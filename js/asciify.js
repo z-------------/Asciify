@@ -12,7 +12,7 @@ asciify.defaults = {
     resolutionY: 0.6
 };
     
-asciify.asciify = function(config) {
+asciify.asciify = function(image, config) {
     var options = asciify.defaults;
     if (config && typeof config === "object" && !Array.isArray(config)) {
         Object.keys(config).forEach(function(key){
@@ -20,7 +20,7 @@ asciify.asciify = function(config) {
         });
     }
 
-    if (options.image) {
+    if (image) {
         var map = options.map;
         var width = options.width;
         var resolutionY = options.resolutionY;
@@ -28,12 +28,12 @@ asciify.asciify = function(config) {
         var canvas = document.createElement("canvas");
         var ctx = canvas.getContext("2d");
 
-        if (options.image instanceof HTMLCanvasElement ||
-            options.image instanceof Image || options.image instanceof HTMLImageElement) {
-            var ratio = options.image.width / options.image.height;
+        if (image instanceof HTMLCanvasElement ||
+            image instanceof Image || image instanceof HTMLImageElement) {
+            var ratio = image.width / image.height;
             canvas.width = width;
             canvas.height = width / ratio * resolutionY;
-            ctx.drawImage(options.image, 0, 0, canvas.width, canvas.height);
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         } else {
             return false;
         }

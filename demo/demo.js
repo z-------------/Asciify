@@ -10,7 +10,7 @@ formInput.addEventListener("change", function(){
         var image = document.createElement("img");
         image.src = dataURI;
         image.onload = function(){
-            outputElem.innerHTML = asciify.asciify({ image: image })
+            outputElem.innerHTML = asciify.asciify(image)
                 .replace(/\n/g, "<br>")
                 .replace(/ /g, "&nbsp;");
         };
