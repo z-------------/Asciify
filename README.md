@@ -8,7 +8,7 @@ Clone this repo and navigate to `demo/index.html` in your browser.
 
 ## How to use it
 
-asciify is actually really easy to use. All you have to do is call `asciify.asciify({ image: myAwesomeImage })`, with other options optional.
+asciify is actually really easy to use. All you have to do is call `asciify.asciify(image)`, with other options optional.
 
 ### `asciify.asciify(image, options)`
 
