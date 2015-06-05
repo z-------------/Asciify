@@ -29,7 +29,7 @@ asciify.asciify = function(image, config) {
         var ctx = canvas.getContext("2d");
 
         if (image instanceof HTMLCanvasElement ||
-            image instanceof Image || image instanceof HTMLImageElement) {
+            image instanceof Image || image instanceof HTMLImageElement || image instanceof HTMLVideoElement) {
             var ratio = image.width / image.height;
             canvas.width = width;
             canvas.height = width / ratio * resolutionY;
