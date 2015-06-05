@@ -4,7 +4,7 @@ A JavaScript library that turns images into ascii art.
 
 ## Demo
 
-Clone this repo and navigate to `demo/index.html` in your browser.
+Clone this repo and navigate to the `demo` directory in your browser, where you will find file input and webcam examples.
 
 ## How to use it
 
