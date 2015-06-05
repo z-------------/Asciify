@@ -3,7 +3,9 @@ var asciify = {};
 asciify.maps = {
     "TEN": "@#%*+=-:. ",
     "FIVE": "@=:. ",
-    "TWO": "@ "
+    "FOUR_BLOCK": "█▓▒░",
+    "TWO": "@ ",
+    "TWO_BLOCK": "█ "
 };
 
 asciify.defaults = {
