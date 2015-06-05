@@ -36,7 +36,7 @@ asciify is actually really easy to use. All you have to do is call `asciify.asci
 
 This is a string that defines which character should represent which brightness of the image. This string can be of **any length**. It **starts with lowest brightness** and **ends with highest brightness**.
 
-For example, these are the default maps that asciify comes with (note the spaces at the ends):
+For example, these are a few of the default maps that asciify comes with (note the spaces at the ends):
 
 | name | map |
 |------|-----|
