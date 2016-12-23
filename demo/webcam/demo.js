@@ -7,7 +7,7 @@ navigator.getUserMedia({ video: true }, function(stream) {
     video.width = 500;
     video.height = 500 * 3 / 4;
     video.setAttribute("autoplay", "true");
-    
+
     var objectURL = window.URL.createObjectURL(stream);
     video.src = objectURL;
     video.onloadedmetadata = function(e) {
