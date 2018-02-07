@@ -47,7 +47,7 @@ These are the default maps that Asciify comes with (note the spaces at the ends)
 ## Examples
 
 ```javascript
-let imageElem = document.getElementById("myimage") // #myimage can be a <canvas>, an <img>, or a <video>
+let imageElem = document.getElementById("myimage")
 let asc = new Asciify(imageElem, {
     width: 500,
     resolutionY: 1,
