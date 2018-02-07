@@ -49,7 +49,7 @@ var Asciify = function(image, overrides) {
   } else {
     throw new Error("image must be Image, HTMLCanvasElement, HTMLImageElement, or HTMLVideoElement");
   }
-}
+};
 
 Asciify.maps = {
   "TEN": "@#%*+=-:. ",
