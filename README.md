@@ -4,7 +4,7 @@ A JavaScript library that turns images into ascii art.
 
 ## Demo
 
-Clone this repo and navigate to the `demo` directory in your browser, where you will find file input and webcam examples.
+Clone this repo and navigate to the `demo` directory in your browser, which contains file input and realtime webcam examples.
 
 ## How to use it
 
@@ -55,3 +55,5 @@ let asc = new Asciify(imageElem, {
 })
 let asciified = asc.asciify() // output
 ```
+
+There are a file input example and a realtime webcam example in the `demo` directory.
