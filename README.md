@@ -36,7 +36,7 @@ All you have to do is `new Asciify(image, options)`. This returns an `Asciify` i
 
 This is a string that defines which character should represent which brightness of the image. This string can be of any length. It starts with lowest brightness and ends with highest brightness.
 
-These are the default maps that Asciify comes with (note the spaces at the ends):
+These are some of the maps that Asciify comes with (note the spaces at the ends):
 
 | name | map |
 |------|-----|
