@@ -1,9 +1,10 @@
 var asciify = function(image, config) {
     var options = asciify.defaults;
     if (config && typeof config === "object" && !Array.isArray(config)) {
-        Object.keys(config).forEach(function(key){
-            options[key] = config[key];
-        });
+        let keys = Object.keys(config);
+        for (let i = 0, l = keys.length; i < l; i++) {
+            options[keys[i]] = config[keys[i]];
+        }
     }
 
     if (image) {
@@ -26,14 +27,14 @@ var asciify = function(image, config) {
 
         var data = ctx.getImageData(0,0,canvas.width,canvas.height).data;
 
-        for (i=0; i<data.length; i+=4)  { // greyscale the image
+        for (let i = 0, l = data.length; i < l; i += 4)  { // greyscale the image
             var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
             data[i] = brightness;
         }
 
         var asciiPixels = [];
 
-        for (i=0; i<data.length; i+=4) { // do reds only, since it is greyscale
+        for (let i = 0, l = data.length; i < l; i += 4) { // do reds only, since it is greyscale
 
             var rchar = map[Math.round((map.length-1)*data[i]/255)];
             asciiPixels.push(rchar);
