@@ -49,9 +49,9 @@ These are the default maps that Asciify comes with (note the spaces at the ends)
 ```javascript
 let imageElem = document.getElementById("myimage")
 let asc = new Asciify(imageElem, {
-    width: 500,
-    resolutionY: 1,
-    map: " .:-=+*%#@" // inverted colors
+  width: 500,
+  resolutionY: 1,
+  map: " .:-=+*%#@" // inverted colors
 })
 let asciified = asc.asciify() // output
 ```
