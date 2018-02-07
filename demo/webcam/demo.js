@@ -12,11 +12,13 @@ navigator.getUserMedia({ video: true }, function(stream) {
   video.src = objectURL;
   video.onloadedmetadata = function(e) {
     let asc = new Asciify(video);
-    var asciifyInterval = setInterval(function() {
+    let draw = function() {
       outputElem.innerHTML = asc.asciify(video)
         .replace(/\n/g, "<br>")
         .replace(/ /g, "&nbsp;");
-    }, 50);
+      requestAnimationFrame(draw);
+    };
+    requestAnimationFrame(draw);
   };
 }, function(err) {
   alert("please allow webcam access for this demo to work.");
