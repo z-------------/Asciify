@@ -1,20 +1,4 @@
-var asciify = {};
-
-asciify.maps = {
-    "TEN": "@#%*+=-:. ",
-    "FIVE": "@=:. ",
-    "FOUR_BLOCK": "█▓▒░",
-    "TWO": "@ ",
-    "TWO_BLOCK": "█ "
-};
-
-asciify.defaults = {
-    width: 100,
-    map: asciify.maps.TEN,
-    resolutionY: 0.6
-};
-    
-asciify.asciify = function(image, config) {
+var asciify = function(image, config) {
     var options = asciify.defaults;
     if (config && typeof config === "object" && !Array.isArray(config)) {
         Object.keys(config).forEach(function(key){
@@ -26,7 +10,7 @@ asciify.asciify = function(image, config) {
         var map = options.map;
         var width = options.width;
         var resolutionY = options.resolutionY;
-        
+
         var canvas = document.createElement("canvas");
         var ctx = canvas.getContext("2d");
 
@@ -53,7 +37,7 @@ asciify.asciify = function(image, config) {
 
             var rchar = map[Math.round((map.length-1)*data[i]/255)];
             asciiPixels.push(rchar);
-            
+
             if (Math.ceil((i+1)/4) % width == 0) {
                 asciiPixels.push("\n");
             }
@@ -63,4 +47,18 @@ asciify.asciify = function(image, config) {
     } else {
         return false;
     }
+};
+
+asciify.maps = {
+    "TEN": "@#%*+=-:. ",
+    "FIVE": "@=:. ",
+    "FOUR_BLOCK": "█▓▒░",
+    "TWO": "@ ",
+    "TWO_BLOCK": "█ "
+};
+
+asciify.defaults = {
+    width: 100,
+    map: asciify.maps.TEN,
+    resolutionY: 0.6
 };

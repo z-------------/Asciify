@@ -12,7 +12,7 @@ navigator.getUserMedia({ video: true }, function(stream) {
     video.src = objectURL;
     video.onloadedmetadata = function(e) {
         var asciifyInterval = setInterval(function() {
-            var output = asciify.asciify(video);
+            var output = asciify(video);
             outputElem.innerHTML = output
                 .replace(/\n/g, "<br>")
                 .replace(/ /g, "&nbsp;");
