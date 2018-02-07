@@ -1,56 +1,57 @@
-var asciify = function(image, config) {
-    var options = asciify.defaults;
-    if (config && typeof config === "object" && !Array.isArray(config)) {
-        let keys = Object.keys(config);
-        for (let i = 0, l = keys.length; i < l; i++) {
-            options[keys[i]] = config[keys[i]];
-        }
-    }
+var Asciify = function(image, overrides) {
+    if (
+      image && (
+        image instanceof Image || image instanceof HTMLCanvasElement ||
+        image instanceof HTMLImageElement || image instanceof HTMLVideoElement
+      )
+    ) {
+      this.options = Asciify.defaults;
+      if (overrides) {
+          let overridesKeys = Object.keys(overrides);
+          for (let i = 0, l = overridesKeys.length; i < l; i++) {
+              if (this.options.hasOwnProperty(overridesKeys[i])) {
+                  this.options[overridesKeys[i]] = overrides[overridesKeys[i]];
+              }
+          }
+      }
 
-    if (image) {
-        var map = options.map;
-        var width = options.width;
-        var resolutionY = options.resolutionY;
+      this.image = image;
+      this.canvas = document.createElement("canvas");
+      this.context = this.canvas.getContext("2d");
+      this.ratio = this.image.width / this.image.height;
 
-        var canvas = document.createElement("canvas");
-        var ctx = canvas.getContext("2d");
+      this.canvas.width = this.options.width;
+      this.canvas.height = this.options.width / this.ratio * this.options.resolutionY;
 
-        if (image instanceof HTMLCanvasElement ||
-            image instanceof Image || image instanceof HTMLImageElement || image instanceof HTMLVideoElement) {
-            var ratio = image.width / image.height;
-            canvas.width = width;
-            canvas.height = width / ratio * resolutionY;
-            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-        } else {
-            return false;
-        }
+      console.log(this)
 
-        var data = ctx.getImageData(0,0,canvas.width,canvas.height).data;
+      this.asciify = function() {
+          this.context.drawImage(this.image, 0, 0, this.canvas.width, this.canvas.height);
 
-        for (let i = 0, l = data.length; i < l; i += 4)  { // greyscale the image
-            var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
-            data[i] = brightness;
-        }
+          let data = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height).data;
 
-        var asciiPixels = [];
+          for (let i = 0, l = data.length; i < l; i += 4)  { // greyscale the image
+              data[i] = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2]; // brightness
+          }
 
-        for (let i = 0, l = data.length; i < l; i += 4) { // do reds only, since it is greyscale
+          let asciiPixels = "";
 
-            var rchar = map[Math.round((map.length-1)*data[i]/255)];
-            asciiPixels.push(rchar);
+          for (let i = 0, l = data.length; i < l; i += 4) { // do reds only, since it is greyscale
+              asciiPixels += this.options.map[ Math.round((this.options.map.length - 1) * data[i] / 255) ];
 
-            if (Math.ceil((i+1)/4) % width == 0) {
-                asciiPixels.push("\n");
-            }
-        }
+              if (Math.ceil((i + 1) / 4) % this.canvas.width === 0) {
+                  asciiPixels += "\n";
+              }
+          }
 
-        return asciiPixels.join("");
+          return asciiPixels;
+      }
     } else {
-        return false;
+        throw new Error("image must be Image, HTMLCanvasElement, HTMLImageElement, or HTMLVideoElement");
     }
-};
+}
 
-asciify.maps = {
+Asciify.maps = {
     "TEN": "@#%*+=-:. ",
     "FIVE": "@=:. ",
     "FOUR_BLOCK": "█▓▒░",
@@ -58,8 +59,8 @@ asciify.maps = {
     "TWO_BLOCK": "█ "
 };
 
-asciify.defaults = {
+Asciify.defaults = {
     width: 100,
-    map: asciify.maps.TEN,
+    map: Asciify.maps.TEN,
     resolutionY: 0.6
 };

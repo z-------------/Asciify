@@ -11,9 +11,9 @@ navigator.getUserMedia({ video: true }, function(stream) {
     var objectURL = window.URL.createObjectURL(stream);
     video.src = objectURL;
     video.onloadedmetadata = function(e) {
+        let asc = new Asciify(video);
         var asciifyInterval = setInterval(function() {
-            var output = asciify(video);
-            outputElem.innerHTML = output
+            outputElem.innerHTML = asc.asciify(video)
                 .replace(/\n/g, "<br>")
                 .replace(/ /g, "&nbsp;");
         }, 50);
