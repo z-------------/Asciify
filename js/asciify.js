@@ -30,14 +30,14 @@ var Asciify = function(image, overrides) {
 
       let data = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height).data;
 
-      for (let i = 0, l = data.length; i < l; i += 4)  { // greyscale the image
-        data[i] = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2]; // brightness
-      }
-
       let asciiPixels = "";
 
-      for (let i = 0, l = data.length; i < l; i += 4) { // do reds only, since it is greyscale
-        asciiPixels += this.options.map[ Math.round((this.options.map.length - 1) * data[i] / 255) ];
+      for (let i = 0, l = data.length; i < l; i += 4) { // do reds only, since it will be greyscaled
+        asciiPixels += this.options.map[
+          Math.round(
+            (this.options.map.length - 1) * (0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2]) / 255
+          )
+        ];
 
         if (Math.ceil((i + 1) / 4) % this.canvas.width === 0) {
           asciiPixels += "\n";
