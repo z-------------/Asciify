@@ -5,7 +5,7 @@ var Asciify = function(imageInput, overrides) {
     imageInput instanceof HTMLImageElement || imageInput instanceof HTMLVideoElement
     )
   ) {
-    let options = Asciify.defaults;
+    let options = Object.assign({}, Asciify.defaults);
     if (overrides) {
       let overridesKeys = Object.keys(overrides);
       for (let i = 0, l = overridesKeys.length; i < l; i++) {
