@@ -73,6 +73,7 @@ var Asciify = function(imageInput, overrides) {
 Asciify.maps = {
   "TEN": "@#%*+=-:. ",
   "FIVE": "@=:. ",
+  "FIVE_BLOCK": "█▓▒░ ",
   "FOUR_BLOCK": "█▓▒░",
   "TWO": "@ ",
   "TWO_BLOCK": "█ "
