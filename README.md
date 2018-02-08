@@ -44,6 +44,12 @@ These are some of the maps that Asciify comes with (note the spaces at the ends)
 | `Asciify.maps.FIVE` | `"@=:. "` |
 | `Asciify.maps.TWO` | `"@ "` |
 
+They are stored in `Asciify.maps`.
+
+### `Asciify.defaults`
+
+Asciify's defaults are stored here. You can change them here to be used in subsequent instances of `Asciify`.
+
 ## Examples
 
 ```javascript
