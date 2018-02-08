@@ -1,8 +1,8 @@
-var Asciify = function(image, overrides) {
+var Asciify = function(imageInput, overrides) {
   if (
-    image && (
-    image instanceof Image || image instanceof HTMLCanvasElement ||
-    image instanceof HTMLImageElement || image instanceof HTMLVideoElement
+    imageInput && (
+    imageInput instanceof Image || imageInput instanceof HTMLCanvasElement ||
+    imageInput instanceof HTMLImageElement || imageInput instanceof HTMLVideoElement
     )
   ) {
     let options = Asciify.defaults;
@@ -26,10 +26,10 @@ var Asciify = function(image, overrides) {
       }
     }
 
-    image = image;
-    canvas = document.createElement("canvas");
-    context = canvas.getContext("2d");
-    ratio = image.width / image.height;
+    const image = imageInput;
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    const ratio = image.width / image.height;
 
     canvas.width = options.width;
     canvas.height = options.width / ratio * options.resolutionY;
