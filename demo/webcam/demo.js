@@ -11,11 +11,9 @@ navigator.getUserMedia({ video: true }, function(stream) {
   var objectURL = window.URL.createObjectURL(stream);
   video.src = objectURL;
   video.onloadedmetadata = function(e) {
-    let asc = new Asciify(video);
+    let asc = new Asciify(video, { html: true });
     let draw = function() {
-      outputElem.innerHTML = asc.asciify(video)
-        .replace(/\n/g, "<br>")
-        .replace(/ /g, "&nbsp;");
+      outputElem.innerHTML = asc.asciify(video);
       requestAnimationFrame(draw);
     };
     requestAnimationFrame(draw);

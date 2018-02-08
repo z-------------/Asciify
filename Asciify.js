@@ -15,6 +15,17 @@ var Asciify = function(image, overrides) {
       }
     }
 
+    const NEWLINE = options.html ? "<br>" : "\n";
+
+    options.map = options.map.split("");
+    if (options.html) {
+      for (let i = 0, l = options.map.length; i < l; i++) {
+        if (options.map[i] === " ") {
+          options.map[i] = "&nbsp;";
+        }
+      }
+    }
+
     image = image;
     canvas = document.createElement("canvas");
     context = canvas.getContext("2d");
@@ -38,7 +49,7 @@ var Asciify = function(image, overrides) {
         ];
 
         if (Math.ceil((i + 1) / 4) % canvas.width === 0) {
-          asciiPixels += "\n";
+          asciiPixels += NEWLINE;
         }
       }
 
@@ -60,5 +71,6 @@ Asciify.maps = {
 Asciify.defaults = {
   width: 100,
   map: Asciify.maps.TEN,
-  resolutionY: 0.6
+  resolutionY: 0.6,
+  html: false
 };

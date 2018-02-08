@@ -31,6 +31,7 @@ All you have to do is `new Asciify(image, options)`. This returns an `Asciify` i
 | **`width`** | `Number` | no | The width of the output ascii art in characters. | `100` |
 | **`map`** | `String` | no | A string describing which characters maps to which brightness. More about this below. | `Asciify.maps.TEN` |
 | **`resolutionY`** | `Number` | no | How much the image should be shrunk vertically to account for output line height | `0.6` |
+| **`html`** | `Boolean` | no | Whether to output `"<br>"` and `"&nbsp;"` in place of `"\n"` and `" "`, respectively | false |
 
 ##### `options.map`
 
