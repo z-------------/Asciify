@@ -8,14 +8,29 @@
     <style>
       output {
         display: block;
-        font-family: monospace;
+        font-family: "Menlo", "Courier New", monospace;
         font-size: 10px;
+      }
+
+      label {
+        display: block;
       }
     </style>
   </head>
   <body>
     <h1>Asciify</h1>
     <form id="form">
+      <label><span>Output width (chars): </span><input type="number" min="1" step="1" value="100" id="width_input"></label>
+      <label>
+        <span>Map: </span>
+        <select value="TEN" id="map_input">
+          <option value="TEN">@#%*+=-:. </option>
+          <option value="FIVE">@=:. </option>
+          <option value="FOUR_BLOCK">█▓▒░</option>
+          <option value="TWO">@ </option>
+          <option value="TWO_BLOCK">█ </option>
+        </select>
+      </label>
       <input type="file" id="form_input">
     </form>
     <output id="output"></output>

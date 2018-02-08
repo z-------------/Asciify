@@ -1,19 +1,42 @@
-var formInput = document.querySelector("#form_input");
-var outputElem = document.querySelector("#output");
+let formInput = document.getElementById("form_input");
+let widthInput = document.getElementById("width_input");
+let mapInput = document.getElementById("map_input");
 
-formInput.addEventListener("change", function(){
-  var file = this.files[0];
+let outputElem = document.getElementById("output");
 
-  var reader = new FileReader();
+var image;
+
+function refresh(image) {
+  let asc = new Asciify(image, {
+    html: true,
+    resolutionY: 0.5,
+    width: widthInput.value || Asciify.defaults.width,
+    map: Asciify.maps[mapInput.value]
+  });
+  outputElem.innerHTML = asc.asciify();
+}
+
+formInput.addEventListener("change", function() {
+  let reader = new FileReader();
   reader.onload = function() {
-    var dataURI = reader.result;
-    var image = document.createElement("img");
-    image.src = dataURI;
-    image.onload = function(){
-      let asc = new Asciify(image, { html: true });
-      outputElem.innerHTML = asc.asciify();
+    image = document.createElement("img");
+    image.src = reader.result;
+    image.onload = function() {
+      refresh(this);
     };
   };
 
-  reader.readAsDataURL(file);
+  reader.readAsDataURL(this.files[0]);
+});
+
+widthInput.addEventListener("input", (e) => {
+  if (image) {
+    refresh(image);
+  }
+});
+
+mapInput.addEventListener("change", (e) => {
+  if (image) {
+    refresh(image);
+  }
 });
