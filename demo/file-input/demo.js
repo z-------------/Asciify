@@ -11,7 +11,8 @@ function refresh(image) {
     html: true,
     resolutionY: 0.5,
     width: widthInput.value || Asciify.defaults.width,
-    map: Asciify.maps[mapInput.value]
+    map: Asciify.maps[mapInput.value],
+    transparencyAsWhite: true
   });
   outputElem.innerHTML = asc.asciify();
 }

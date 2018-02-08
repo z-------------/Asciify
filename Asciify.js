@@ -34,8 +34,18 @@ var Asciify = function(imageInput, overrides) {
     canvas.width = options.width;
     canvas.height = options.width / ratio * options.resolutionY;
 
+    const drawImage = options.transparencyAsWhite
+      ? function() {
+        context.fillStyle = "white";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      }
+      : function() {
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      };
+
     this.asciify = function() {
-      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      drawImage();
 
       let data = context.getImageData(0, 0, canvas.width, canvas.height).data;
 
@@ -72,5 +82,6 @@ Asciify.defaults = {
   width: 100,
   map: Asciify.maps.TEN,
   resolutionY: 0.6,
-  html: false
+  html: false,
+  transparencyAsWhite: false
 };
