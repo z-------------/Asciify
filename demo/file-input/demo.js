@@ -9,7 +9,7 @@ var image;
 function refresh(image) {
   let asc = new Asciify(image, {
     html: true,
-    resolutionY: 0.5,
+    resolutionY: 0.6,
     width: widthInput.value || Asciify.defaults.width,
     map: Asciify.maps[mapInput.value],
     transparencyAsWhite: true
