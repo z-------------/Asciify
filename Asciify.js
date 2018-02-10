@@ -26,6 +26,15 @@ var Asciify = function(imageInput, overrides) {
       }
     }
 
+    const drawImage = options.transparencyAsWhite
+      ? function() {
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      }
+      : function() {
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      };
+
     const image = imageInput;
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
@@ -34,15 +43,7 @@ var Asciify = function(imageInput, overrides) {
     canvas.width = options.width;
     canvas.height = options.width / ratio * options.resolutionY;
 
-    const drawImage = options.transparencyAsWhite
-      ? function() {
-        context.fillStyle = "white";
-        context.fillRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(image, 0, 0, canvas.width, canvas.height);
-      }
-      : function() {
-        context.drawImage(image, 0, 0, canvas.width, canvas.height);
-      };
+    context.fillStyle = "white"; // for fillRect() if options.transparencyAsWhite
 
     this.asciify = function() {
       drawImage();
